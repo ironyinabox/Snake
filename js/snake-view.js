@@ -4,7 +4,7 @@
   var View = SG.View = function ($el) {
     this.$el = $el;
     this.board = new SG.Board(15);
-    window.setInterval(this.step.bind(this), 100);
+    window.setInterval(this.step.bind(this), 120);
 
     $(window).on("keydown", this.handleKeyEvent.bind(this));
   }

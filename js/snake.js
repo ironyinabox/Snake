@@ -33,7 +33,7 @@
     "R": [ 0, -1]
   };
 
-  Snake.prototype.isOccupying =  function (pos) {
+  Snake.prototype.isOccupying = function (pos) {
     this.segements.forEach(function (seg) {
       if (isSameCoord(seg, pos)) {
         return true;
