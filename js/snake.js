@@ -3,9 +3,11 @@
 
   var Snake = SG.Snake = function (board) {
     this.dir = "U";
+    this.turning = false;
     var origin = [10,10];
     this.segements = [origin];
     this.board = board;
+    this.growing = false;
   };
 
   var Apple = SG.Apple = function (board) {
@@ -42,29 +44,73 @@
 
   Snake.prototype.move = function () {
     var delta = Snake.DELTAS[this.dir];
-    this.segements.unshift( plusCoord(this.segements[0], delta) );
-    this.segements.pop();
+    var next = plusCoord(this.segements[0], delta);
+    if (!this.isInBounds(next)) {
+      this.segements = [];
+      alert("You lose! Refresh to play again");
+      return;
+    } else {
+      this.segements.unshift(next);
+    };
+
+    this.turning = false;
+
     if (this.eatApple()) {
       this.board.apple.setApple();
-    }
+    };
+
+    if (this.growing) {
+      this.growing = false;
+    } else {
+      this.segements.pop();
+    };
+
+    if (this.eatDeath()) {
+      this.segements = [];
+      alert("You lose! Refresh to play again");
+    };
   };
 
   Snake.prototype.turn = function (dir) {
-    this.dir = dir;
+    if (this.turning) { return }
+    if (this.validTurn(dir)) {
+      this.turning = true;
+      this.dir = dir;
+    }
+  };
+
+  Snake.prototype.validTurn =  function (dir) {
+    return (this.dir === "U" || this.dir === "D") && (dir === "R" || dir === "L") ||
+      (this.dir === "L" || this.dir === "R") && (dir === "U" || dir === "D")
   };
 
   Snake.prototype.head = function () {
     return this.segements[0];
-  }
+  };
 
   Snake.prototype.eatApple = function () {
     if (isSameCoord(this.head(), this.board.apple.position)) {
-      this.segements.push(this.segements[0]);
+      this.growing = true;
       return true;
     } else {
       return false;
     }
-  }
+  };
+
+  Snake.prototype.eatDeath = function () {
+    var head = this.head();
+    for (var i = 1; i < this.segements.length; i++) {
+      if (isSameCoord(head, this.segements[i])) {
+        return true;
+      }
+    }
+   return false;
+  };
+
+  Snake.prototype.isInBounds = function (pos) {
+    return (pos[0] >= 0) && (pos[0] < this.board.dim) &&
+     (pos[1] >= 0) && (pos[1] < this.board.dim);
+  };
 
   var plusCoord = function (arr1, arr2) {
     return [ arr1[0] + arr2[0],  arr1[1] + arr2[1] ]

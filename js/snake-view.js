@@ -3,7 +3,7 @@
 
   var View = SG.View = function ($el) {
     this.$el = $el;
-    this.board = new SG.Board(20);
+    this.board = new SG.Board(15);
     window.setInterval(this.step.bind(this), 100);
 
     $(window).on("keydown", this.handleKeyEvent.bind(this));
@@ -34,6 +34,7 @@
     var that = this;
     this.$el.html('');
     this.board.render().forEach(function (row) {
+      // $ul = $("ul").append(row.join(" "))
       that.$el.append(row.join(" "));
       that.$el.append("\n");
     })

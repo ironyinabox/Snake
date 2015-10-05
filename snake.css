@@ -1,0 +1,22 @@
+html, body, figure, figcaption, ul, li, h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  text-align: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  text-align: center;
+  font-size: 60px;
+  margin: 30px;
+}
+
+.snake-game {
+  font-size: 20px;
+  text-align: center;
+}
