@@ -136,7 +136,7 @@
     for (var i = 0; i < dim; i++) {
       var row = [];
       for (var j = 0; j < dim ; j++) {
-        row.push('.');
+        row.push('N');
       }
       grid.push(row);
     }
@@ -151,6 +151,9 @@
     });
     var appSpot = this.apple.position;
     grid[appSpot[0]][appSpot[1]] = "A";
+
+
+
     return grid;
   };
 

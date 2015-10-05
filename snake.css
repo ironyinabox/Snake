@@ -6,8 +6,18 @@ html, body, figure, figcaption, ul, li, h1 {
   text-align: inherit;
 }
 
+ul:after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
 ul {
+  margin: auto;
+  width: 465px;
   list-style: none;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
 }
 
 h1 {
@@ -16,11 +26,28 @@ h1 {
   margin: 30px;
 }
 
-.snake-game {
-  font-size: 20px;
-  text-align: center;
+ul > li {
+  float: left;
+  border-right: 1px solid black;
+  width: 30px;
+  height: 30px;
+  display: block;
 }
 
 p {
   text-align: center;
+}
+
+.snake-game {
+  display: block;
+}
+.snake-game > ul:last-child {
+  border-bottom: 1px solid black;
+}
+
+.S {
+  background: green;
+}
+.A {
+  background: red;
 }

@@ -34,9 +34,16 @@
     var that = this;
     this.$el.html('');
     this.board.render().forEach(function (row) {
-      // $ul = $("ul").append(row.join(" "))
-      that.$el.append(row.join(" "));
-      that.$el.append("\n");
+      var $ul = $('<ul>')
+      row.forEach(function (el) {
+        var $li = $('<li>', {
+          'class': el
+        })
+        $ul.append($li)
+      })
+      that.$el.append($ul);
+      // that.$el.append(row.join(" "));
+      // that.$el.append("\n");
     })
   }
 
