@@ -47,7 +47,6 @@
     var next = plusCoord(this.segements[0], delta);
     if (!this.isInBounds(next)) {
       this.segements = [];
-      alert("You lose! Refresh to play again");
       return;
     } else {
       this.segements.unshift(next);
@@ -67,7 +66,7 @@
 
     if (this.eatDeath()) {
       this.segements = [];
-      alert("You lose! Refresh to play again");
+      // alert("You lose! Refresh to play again");
     };
   };
 

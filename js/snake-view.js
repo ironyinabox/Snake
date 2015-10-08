@@ -20,8 +20,8 @@
     var dir = View.keyCodes[e.keyCode];
     if (dir) {
       this.board.snake.turn(dir);
-    } else {
-      // valid key not pressed
+    } else if (e.keyCode === 82) {
+      this.board = new SG.Board(15);
     }
   }
 
@@ -32,7 +32,9 @@
 
   View.prototype.render =  function () {
     var that = this;
-    this.$el.html('');
+    var $p = $('<p>').append("Score: " + (this.board.snake.segements.length - 1));
+    this.$el.html($p);
+
     this.board.render().forEach(function (row) {
       var $ul = $('<ul>')
       row.forEach(function (el) {
@@ -42,8 +44,6 @@
         $ul.append($li)
       })
       that.$el.append($ul);
-      // that.$el.append(row.join(" "));
-      // that.$el.append("\n");
     })
   }
 
