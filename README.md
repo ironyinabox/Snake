@@ -2,6 +2,7 @@ About
 
 A fairly standard implementation of the classic game Snake using CSS, JavaScript, and jQuery. 
 Features: Javascript game back-end with a jQuery and CSS front end.
+
 [Live] (http://jasonzwick.xyz/Snake/snake.html)
 
 Controls
